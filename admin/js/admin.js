@@ -97,10 +97,13 @@ function initializeNavigation() {
             // Hide all sections
             sections.forEach(section => {
                 section.classList.remove('active');
+                section.style.display = 'none'; // Ensure other sections are hidden
             });
             
             // Show the target section
-            document.querySelector(targetId).classList.add('active');
+            const targetSection = document.querySelector(targetId);
+            targetSection.classList.add('active');
+            targetSection.style.display = 'block'; // Ensure target section is visible
             
             // Update active nav link
             navLinks.forEach(navLink => {

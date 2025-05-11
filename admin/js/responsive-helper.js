@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     setupAccessibilityFeatures();
     handleWelcomeMessageVisibility();
     fixMobileMenuToggle();
+    // Execute after a short delay to ensure all other scripts have run
+    setTimeout(ensureActiveSectionVisible, 100);
 });
 
 /**
@@ -310,11 +312,13 @@ function navigateToSection(sectionId) {
         const sections = document.querySelectorAll('.admin-section');
         sections.forEach(section => {
             section.classList.remove('active');
+            section.style.display = 'none'; // Ensure other sections are hidden
         });
         
         const targetSection = document.querySelector(sectionId);
         if (targetSection) {
             targetSection.classList.add('active');
+            targetSection.style.display = 'block'; // Force display of the target section
         }
         
         // Close mobile menu if it's open
@@ -323,4 +327,30 @@ function navigateToSection(sectionId) {
             sidebar.classList.remove('mobile-expanded');
         }
     }
+}
+
+/**
+ * Ensure active section is visible, especially on mobile
+ */
+function ensureActiveSectionVisible() {
+    // Find active section
+    const activeSection = document.querySelector('.admin-section.active');
+    
+    // If no active section, activate the dashboard
+    if (!activeSection) {
+        const dashboard = document.querySelector('#dashboard-section');
+        if (dashboard) {
+            dashboard.classList.add('active');
+            dashboard.style.display = 'block';
+        }
+        return;
+    }
+    
+    // Ensure active section is visible
+    activeSection.style.display = 'block';
+    
+    // Make other sections invisible
+    document.querySelectorAll('.admin-section:not(.active)').forEach(section => {
+        section.style.display = 'none';
+    });
 }
