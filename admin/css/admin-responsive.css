@@ -240,6 +240,8 @@ html, body {
         min-height: calc(100vh - 70px);
         display: block; /* Change to block layout for mobile */
         margin-left: 0 !important; /* Remove any margin that pushes content */
+        overflow-x: visible;
+        overflow-y: visible;
     }
     
     .admin-content {
@@ -255,14 +257,20 @@ html, body {
     }
     
     .admin-section {
-        display: block;
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease;
         width: 100%;
+        padding: 15px;
         box-sizing: border-box;
-        padding: 10px 0;
+        margin: 0;
     }
     
     .admin-section.active {
-        display: block !important; /* Force display for active sections */
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     /* Fix for sections not showing */

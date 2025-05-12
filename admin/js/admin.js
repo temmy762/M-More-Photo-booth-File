@@ -72,8 +72,17 @@ function initializeNavigation() {
     // Make first section active by default
     if (sections.length > 0 && !document.querySelector('.admin-section.active')) {
         sections[0].classList.add('active');
+        sections[0].style.display = 'block'; // Ensure it's displayed
+        sections[0].style.visibility = 'visible'; // Make sure it's visible
+        
         if (navLinks.length > 0) {
             navLinks[0].parentElement.classList.add('active');
+        }
+        
+        // Hide all other sections to avoid display issues
+        for(let i = 1; i < sections.length; i++) {
+            sections[i].classList.remove('active');
+            sections[i].style.display = 'none';
         }
     }
     

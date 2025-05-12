@@ -8,8 +8,22 @@ document.addEventListener('DOMContentLoaded', function() {
     setupAccessibilityFeatures();
     handleWelcomeMessageVisibility();
     fixMobileMenuToggle();
+    initDashboardVisibility();
     // Execute after a short delay to ensure all other scripts have run
     setTimeout(ensureActiveSectionVisible, 100);
+    
+    // Also add event listener for resize to ensure sections remain visible
+    window.addEventListener('resize', debounce(function() {
+        ensureActiveSectionVisible();
+    }, 250));
+    
+    // Force check for active section visibility after a longer delay
+    setTimeout(function() {
+        const activeSection = document.querySelector('.admin-section.active');
+        if (!activeSection || window.getComputedStyle(activeSection).display === 'none') {
+            initDashboardVisibility();
+        }
+    }, 500);
 });
 
 /**
@@ -342,15 +356,79 @@ function ensureActiveSectionVisible() {
         if (dashboard) {
             dashboard.classList.add('active');
             dashboard.style.display = 'block';
+            
+            // Also update the nav link
+            const dashboardLink = document.querySelector('.admin-nav a[href="#dashboard-section"]');
+            if (dashboardLink) {
+                dashboardLink.parentElement.classList.add('active');
+            }
         }
         return;
     }
     
-    // Ensure active section is visible
+    // Ensure active section is visible with proper display properties
     activeSection.style.display = 'block';
+    activeSection.style.visibility = 'visible';
+    activeSection.style.opacity = '1';
     
     // Make other sections invisible
     document.querySelectorAll('.admin-section:not(.active)').forEach(section => {
         section.style.display = 'none';
     });
+    
+    // Update the corresponding navigation link
+    const sectionId = activeSection.id;
+    const navLink = document.querySelector(`.admin-nav a[href="#${sectionId}"]`);
+    if (navLink) {
+        // Clear other active links
+        document.querySelectorAll('.admin-nav li').forEach(li => li.classList.remove('active'));
+        // Set this link as active
+        navLink.parentElement.classList.add('active');
+    }
+}
+
+/**
+ * Set up initial dashboard section visibility
+ * This function runs on page load to ensure the dashboard is visible
+ */
+function initDashboardVisibility() {
+    // Check if the dashboard section exists
+    const dashboardSection = document.getElementById('dashboard-section');
+    if (!dashboardSection) return;
+    
+    // Ensure dashboard is visible with all necessary styles
+    dashboardSection.classList.add('active');
+    dashboardSection.style.display = 'block';
+    dashboardSection.style.visibility = 'visible';
+    dashboardSection.style.opacity = '1';
+    dashboardSection.style.position = 'relative';
+    dashboardSection.style.zIndex = '5';
+    
+    // Force parent container to be visible if it exists
+    const adminContent = document.querySelector('.admin-content');
+    if (adminContent) {
+        adminContent.style.display = 'block';
+        adminContent.style.minHeight = '100vh';
+    }
+
+    // Update the corresponding nav link
+    const dashboardLink = document.querySelector('.admin-nav a[href="#dashboard-section"]');
+    if (dashboardLink) {
+        dashboardLink.parentElement.classList.add('active');
+    }
+    
+    // Make sure other sections are hidden
+    document.querySelectorAll('.admin-section:not(#dashboard-section)').forEach(section => {
+        section.classList.remove('active');
+        section.style.display = 'none';
+    });
+    
+    // Force the browser to redraw the dashboard section
+    setTimeout(() => {
+        if (dashboardSection) {
+            dashboardSection.style.display = 'none';
+            void dashboardSection.offsetHeight; // Force reflow
+            dashboardSection.style.display = 'block';
+        }
+    }, 50);
 }

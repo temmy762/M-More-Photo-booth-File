@@ -1,0 +1,50 @@
+/* 
+   Memories and More Photo Booths - Admin Dashboard Section Visibility Fix
+   Fixes issues with sections not displaying properly on mobile devices
+*/
+
+/* Global fix for admin layout to ensure sections display properly */
+body.admin-body {
+    overflow-x: hidden;
+}
+
+/* Additional styles for admin sections to ensure they're visible */
+.admin-section {
+    position: relative !important;
+    max-width: 100%;
+    box-sizing: border-box;
+    transition: none !important; /* Prevent transitions causing visibility issues */
+}
+
+/* Fix section visibility - ensure sections are fully visible when active */
+#dashboard-section.active,
+#packages-section.active,
+#addons-section.active,
+#events-section.active,
+#settings-section.active {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 5;
+    min-height: 300px; /* Ensure minimum height to show content */
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* Force dark space issue fix */
+.admin-main {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+/* Fix for the black space issue */
+@media screen and (max-width: 991px) {
+    .admin-content {
+        background-color: #f5f5f5;
+        min-height: calc(100vh - 60px);
+    }
+    
+    .admin-section {
+        margin-bottom: 20px;
+    }
+}
