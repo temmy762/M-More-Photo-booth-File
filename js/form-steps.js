@@ -32,14 +32,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Form submission handler
+    // Form submission visual handling only (AJAX submission is handled by ajax-form-handler.js)
     const quoteForm = document.getElementById('quoteForm');
     if (quoteForm) {
-        quoteForm.addEventListener('submit', function(e) {
-            // Uncomment this line if you want to prevent the default form submission
-            // e.preventDefault();
-            
-            // Show success message
+        // We're not adding a submit event handler here anymore
+        // because ajax-form-handler.js will handle the actual submission
+        // This prevents double handling of the form submission
+        
+        // Initialize success message display functionality that can be called from elsewhere
+        window.showQuoteFormSuccess = function() {
             const formSuccess = document.querySelector('.form-success');
             if (formSuccess) {
                 quoteForm.style.display = 'none';
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Scroll to success message
                 formSuccess.scrollIntoView({ behavior: 'smooth' });
             }
-        });
+        };
     }
     
     // Update form progress

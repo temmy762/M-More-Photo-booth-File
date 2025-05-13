@@ -1,5 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<htm    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="css/logo-styles.css">
+    <link rel="stylesheet" href="css/navbar-styles.css">
+    <link rel="stylesheet" href="css/form-styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/mobile-fixes.css">
+    <link rel="stylesheet" href="css/form-feedback.css">n">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,7 +93,8 @@
                 </div>
 
                 <!-- Quote Form -->
-                <form id="quoteForm" class="multi-step-form" action="mailto:info@memoriesandmorephotobooths.com" method="post" enctype="text/plain">
+                <form id="quoteForm" class="multi-step-form" action="form-handler.php" novalidate>
+                    <input type="hidden" name="form_type" value="inquire">
                     <!-- Step 1: Event Details -->
                     <div class="form-step active" data-step="1">
                         <h2>Tell Us About Your Event</h2>
@@ -523,5 +533,6 @@
     <script src="js/main.js"></script>
     <script src="js/form-steps.js"></script>
     <script src="js/backdrop-selection.js"></script>
+    <script src="js/ajax-form-handler-updated.js"></script>
 </body>
 </html>
