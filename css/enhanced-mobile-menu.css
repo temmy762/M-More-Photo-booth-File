@@ -34,8 +34,7 @@
     .nav-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(5px, -5px) !important;
     }
-    
-    /* Navigation menu */
+      /* Navigation menu */
     .nav-menu {
         position: fixed !important;
         top: 0 !important;
@@ -51,10 +50,14 @@
         display: block !important;
         overflow-y: auto !important;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2) !important;
+        visibility: hidden !important; /* Hide menu by default */
+        opacity: 0 !important; /* Start with 0 opacity */
     }
     
     .nav-menu.active {
         transform: translateX(0) !important;
+        visibility: visible !important; /* Show when active */
+        opacity: 1 !important; /* Fade in when active */
     }
     
     .nav-menu li {
