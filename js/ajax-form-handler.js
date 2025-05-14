@@ -92,12 +92,13 @@ function initAjaxForm(form) {
             // Show detailed error message
             let errorMessage = 'An error occurred while submitting the form.';
             
-            // Provide more specific error information            if (error.message.includes('JSON')) {
+            // Provide more specific error information
+            if (error.message.includes('JSON')) {
                 errorMessage = 'Server response error: The PHP script may have syntax errors or is not outputting valid JSON.';
             } else if (error.message.includes('status: 405')) {
                 errorMessage = 'Server error 405 - Method Not Allowed. This happens when the server is configured to reject POST requests. Please try a different method of contact, such as using the Inquire form or sending an email directly to info@memoriesandmorephotobooths.com.';
                 
-                // Create diagnostic link
+                // Create diagnostic link for later use (will be appended in the showFormError function)
                 const diagLink = document.createElement('a');
                 diagLink.href = 'form-error-diagnostic.html';
                 diagLink.textContent = 'Run diagnostic tool';
@@ -105,8 +106,11 @@ function initAjaxForm(form) {
                 diagLink.style.marginTop = '10px';
                 diagLink.target = '_blank';
                 
-                // Add to error message
-                errorElement.appendChild(diagLink);
+                // Add diagnostic info to error message
+                errorMessage += ' <div id="diagnostic-link-container"></div>';
+                
+                // Store the diagnostic link for later use
+                window.diagnosticLink = diagLink;
             } else if (error.message.includes('status')) {
                 errorMessage = error.message;
             } else if (error.name === 'TypeError' && error.message.includes('NetworkError')) {

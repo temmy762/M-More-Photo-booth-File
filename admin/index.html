@@ -2,12 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Admin Dashboard - Memories and More Photo Booths</title>
+    
+    <!-- Run this script immediately to ensure toggle works -->
+    <script src="js/ensure-toggle-works.js"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/admin-styles.css">
-    <link rel="stylesheet" href="css/admin-responsive.css">
+    <link rel="stylesheet" href="css/simple-mobile.css">
+    <link rel="stylesheet" href="css/sidebar-cleanup-new.css">
     <link rel="stylesheet" href="css/section-visibility-fix.css">
+    <link rel="stylesheet" href="css/admin-mobile-enhancements.css">
+    
+    <!-- Inline critical mobile toggle styles -->
+    <style>
+        /* Critical mobile toggle styles */
+        @media screen and (max-width: 991px) {
+            #mobileMenuToggle {
+                display: block !important;
+                cursor: pointer !important;
+                z-index: 9999 !important;
+            }
+            
+            .admin-sidebar.mobile-expanded .admin-nav {
+                display: block !important;
+            }
+            
+            .admin-nav {
+                display: none !important;
+            }
+        }
+    </style>
     <style>
         body {
             font-family: var(--admin-font-primary);
@@ -496,12 +522,35 @@
         <aside class="admin-sidebar">
             <div class="admin-logo">
                 <h2>M&M Admin</h2>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                    <span class="sr-only">Toggle Menu</span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                <button type="button" id="mobileMenuToggle" 
+                        style="background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; padding: 10px; width: 50px; height: 50px; z-index: 9999;"
+                        onclick="document.querySelector('.admin-sidebar').classList.toggle('mobile-expanded'); return false;">
+                    <i class="fas fa-bars" style="display: inline-block;"></i>
+                    <i class="fas fa-times" style="display: none;"></i>
                 </button>
+                <script>
+                    // Immediate script for toggle functionality
+                    (function() {
+                        var toggle = document.getElementById('mobileMenuToggle');
+                        var sidebar = document.querySelector('.admin-sidebar');
+                        var bars = toggle.querySelector('.fa-bars');
+                        var times = toggle.querySelector('.fa-times');
+                        
+                        toggle.onclick = function() {
+                            sidebar.classList.toggle('mobile-expanded');
+                            
+                            if (sidebar.classList.contains('mobile-expanded')) {
+                                bars.style.display = 'none';
+                                times.style.display = 'inline-block';
+                            } else {
+                                bars.style.display = 'inline-block';
+                                times.style.display = 'none';
+                            }
+                            
+                            return false;
+                        };
+                    })();
+                </script>
             </div>
             <nav class="admin-nav">
                 <ul>
@@ -520,9 +569,6 @@
         <main class="admin-main">
             <header class="admin-header">
                 <h1>Admin Dashboard</h1>
-                <div class="admin-user">
-                    <span>Welcome, Admin</span>
-                </div>
             </header>
             
             <div class="admin-content">
@@ -862,12 +908,6 @@ Contact us to discuss your event details and we'll provide a personalized quote.
             </section>
             </div>
             
-            <!-- Admin Footer -->
-            <footer class="admin-footer">
-                <div class="footer-content">
-                    <p>Proudly Developed by <a href="https://solvatree.com" target="_blank">SolvaTree<span class="tree-icon"><i class="fas fa-tree"></i></span>com</a></p>
-                </div>
-            </footer>
         </main>
     </div>
     
@@ -1389,9 +1429,7 @@ Contact us to discuss your event details and we'll provide a personalized quote.
         }
     </script>
     
-    <script src="js/responsive-helper.js"></script>
-    <script src="js/section-visibility-fix.js"></script>
-    <script src="js/dashboard-visibility-fix.js"></script>
-    <link rel="stylesheet" href="css/section-visibility-fix.css">
+    <script src="js/simple-admin.js"></script>
+    <link rel="stylesheet" href="css/simple-mobile.css">
 </body>
 </html>

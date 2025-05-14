@@ -83,13 +83,35 @@ function initializeNavigation() {
         for(let i = 1; i < sections.length; i++) {
             sections[i].classList.remove('active');
             sections[i].style.display = 'none';
+            sections[i].style.visibility = 'hidden'; // Explicitly hide
+            sections[i].style.opacity = '0'; // Make fully transparent
         }
     }
     
-    // Mobile menu toggle
+    // Enhanced mobile menu toggle with animation support
     if (mobileMenuToggle && sidebar) {
-        mobileMenuToggle.addEventListener('click', function() {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Prevent event bubbling
+            
+            // Toggle expanded class
             sidebar.classList.toggle('mobile-expanded');
+            
+            // Animate hamburger icon
+            const bars = this.querySelectorAll('.bar');
+            if (bars.length >= 3) {
+                if (sidebar.classList.contains('mobile-expanded')) {
+                    // X shape for close
+                    bars[0].style.transform = 'translateY(8px) rotate(45deg)';
+                    bars[1].style.opacity = '0';
+                    bars[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+                } else {
+                    // Reset to hamburger
+                    bars[0].style.transform = 'none';
+                    bars[1].style.opacity = '1';
+                    bars[2].style.transform = 'none';
+                }
+            }
         });
     }
     
