@@ -1,0 +1,252 @@
+/*
+ * Enhanced Mobile Responsiveness
+ * Comprehensive mobile fixes for Memories and More Photo Booths website
+ * Created: May 14, 2025
+ */
+
+/* ===== GLOBAL MOBILE FIXES ===== */
+
+/* Ensure viewport is properly set */
+@viewport {
+    width: device-width;
+    initial-scale: 1;
+    maximum-scale: 1;
+}
+
+/* Fix for images and media on mobile */
+img, video, iframe {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* Ensure text is readable on all devices */
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Medium Devices (tablets) */
+@media (max-width: 991px) {
+    /* General content containers */
+    .container {
+        width: 95% !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    /* Fix section spacing */
+    section {
+        padding: 50px 0 !important;
+    }
+    
+    /* Button sizing for better touch targets */
+    .btn {
+        padding: 12px 25px !important;
+        font-size: 1rem !important;
+    }
+    
+    /* Fix navbar issues */
+    .nav-menu.active {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
+/* Small Devices (landscape phones) */
+@media (max-width: 767px) {
+    /* Adjust section padding */
+    section {
+        padding: 40px 0 !important;
+    }
+    
+    /* Make grid items full width */
+    [class*="col-"] {
+        width: 100% !important;
+        padding: 0 15px !important;
+    }
+    
+    /* Fix heading sizes */
+    h1 {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    h2 {
+        font-size: 1.8rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    /* Fix booth cards layout */
+    .booth-content {
+        flex-direction: column !important;
+    }
+    
+    .booth-image, 
+    .booth-details {
+        width: 100% !important;
+        margin: 0 0 20px 0 !important;
+    }
+    
+    /* Fix feature cards */
+    .feature {
+        padding: 15px !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Fix the sticky header on scroll */
+    .navbar.sticky {
+        padding: 10px 0 !important;
+    }
+}
+
+/* Extra Small Devices (portrait phones) */
+@media (max-width: 575px) {
+    /* Fix navigation */
+    .nav-menu {
+        width: 100% !important;
+        padding: 10px 0 !important;
+    }
+    
+    .nav-menu li {
+        margin: 0 !important;
+        padding: 8px 0 !important;
+        text-align: center !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    }
+    
+    /* Improve form elements */
+    input, 
+    select, 
+    textarea {
+        font-size: 16px !important; /* Prevent iOS zoom */
+        padding: 12px !important;
+    }
+    
+    .form-group {
+        margin-bottom: 15px !important;
+    }
+    
+    /* Fix buttons */
+    .btn-group {
+        flex-direction: column !important;
+    }
+    
+    .btn-group .btn {
+        margin: 5px 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Fix social media icons */
+    .social-icons {
+        justify-content: center !important;
+    }
+    
+    .social-icons a {
+        margin: 0 8px !important;
+    }
+    
+    /* Fix footer */
+    .footer-content {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+}
+
+/* ===== SPECIFIC PAGE FIXES ===== */
+
+/* Our Booth Page */
+@media (max-width: 767px) {
+    .section-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 25px !important;
+    }
+    
+    .booth-showcase {
+        padding: 30px 0 !important;
+    }
+    
+    .booth-showcase .container {
+        padding: 0 15px !important;
+    }
+    
+    .booth-features {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Form Pages */
+@media (max-width: 767px) {
+    .form-step {
+        padding: 20px !important;
+    }
+    
+    .form-success {
+        padding: 20px !important;
+    }
+    
+    .form-row {
+        flex-direction: column !important;
+    }
+    
+    .form-row .form-group {
+        width: 100% !important;
+    }
+    
+    .form-actions {
+        flex-direction: column !important;
+    }
+    
+    .form-actions button {
+        width: 100% !important;
+        margin: 5px 0 !important;
+    }
+}
+
+/* Home Page */
+@media (max-width: 767px) {
+    .hero-content {
+        padding-top: 70px !important;
+        padding-bottom: 50px !important;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .testimonial-card {
+        padding: 15px !important;
+    }
+    
+    .cta-section {
+        padding: 40px 0 !important;
+    }
+}
+
+/* Gallery Page */
+@media (max-width: 767px) {
+    .gallery-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    
+    .gallery-item {
+        height: auto !important;
+    }
+    
+    .gallery-filter {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    
+    .gallery-filter button {
+        margin: 5px !important;
+        font-size: 0.9rem !important;
+    }
+}

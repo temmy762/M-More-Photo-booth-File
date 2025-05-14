@@ -1,0 +1,108 @@
+/*
+ * Form Mobile Enhancements
+ * Improved styling for form elements on mobile devices
+ */
+
+/* Ensure form elements are properly sized on mobile */
+@media (max-width: 767px) {
+    /* Form container */
+    .form-container {
+        padding: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    /* Form steps */
+    .form-step {
+        padding: 15px !important;
+    }
+    
+    /* Form groups */
+    .form-group {
+        margin-bottom: 15px !important;
+    }
+    
+    /* Form inputs */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px !important;
+        font-size: 16px !important; /* Prevent iOS zoom */
+        border-radius: 5px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Fixed date picker spacing */
+    input[type="date"] {
+        padding-right: 0 !important;
+    }
+    
+    /* Button layout */
+    .form-actions {
+        margin-top: 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .form-actions button {
+        margin: 5px 0 !important;
+        width: 100% !important;
+        min-height: 44px !important; /* Better touch targets */
+    }
+    
+    /* Form rows */
+    .form-row {
+        flex-direction: column !important;
+    }
+    
+    .form-row .form-group {
+        width: 100% !important;
+    }
+    
+    /* Form progress indicator */
+    .form-progress {
+        padding: 10px 0 !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .progress-step {
+        padding: 6px !important;
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 14px !important;
+    }
+    
+    /* Form success message */
+    .form-success {
+        padding: 20px !important;
+        margin-top: 20px !important;
+    }
+    
+    .form-success .success-icon {
+        font-size: 48px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Improved radio buttons and checkboxes */
+    input[type="radio"],
+    input[type="checkbox"] {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    .radio-group label,
+    .checkbox-group label {
+        padding: 5px 10px 5px 30px !important;
+        position: relative !important;
+    }
+    
+    .radio-group input,
+    .checkbox-group input {
+        position: absolute !important;
+        left: 5px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+    }
+}

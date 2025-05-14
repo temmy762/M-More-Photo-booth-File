@@ -297,8 +297,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'smtp_port' => ini_get('smtp_port'),
             'sendmail_from' => ini_get('sendmail_from')
         ];
+          $mailSent = mail($to, $subject, $message, $headers);
         
-        $mailSent = mail($to, $subject, $message, $headers);
+        // Send confirmation email to customer
+        $customerSubject = "Your Inquiry - Memories and More Photo Booths";
+        $customerMessage = "
+        <html>
+        <body style='font-family: Arial, sans-serif; line-height: 1.6; color: #333;'>
+            <div style='max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e1e1e1; border-radius: 5px;'>
+                <h2 style='color: #e91e63;'>Thank You for Your Interest!</h2>
+                <p>Dear " . htmlspecialchars($name) . ",</p>
+                <p>Thanks for reaching out to Memories and More Photo Booths. We've received your inquiry and a team member will contact you shortly to confirm availability for your event.</p>
+                <p><strong>Event Date:</strong> " . htmlspecialchars($eventDate ?? 'Not specified') . "</p>
+                <p>If you have any immediate questions, please feel free to call us at <strong>763.785.1590</strong>.</p>
+                <p>Best regards,<br>Memories and More Photo Booths Team</p>
+            </div>
+        </body>
+        </html>";
+        
+        // Set headers for customer email
+        $customerHeaders = "MIME-Version: 1.0" . "\r\n";
+        $customerHeaders .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $customerHeaders .= "From: Memories and More Photo Booths <no-reply@memoriesandmorephotobooths.com>" . "\r\n";
+        
+        // Send confirmation email to customer
+        $customerMailSent = mail($email, $customerSubject, $customerMessage, $customerHeaders);
+        
+        // Log customer email status
+        if ($customerMailSent) {
+            error_log("Confirmation email sent to customer: $email");
+        } else {
+            error_log("Failed to send confirmation email to customer: $email");
+        }
         
         // Check if mail was sent successfully
         if ($mailSent) {

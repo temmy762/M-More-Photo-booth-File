@@ -1,0 +1,42 @@
+/* Booth Section Updates 
+   Additional styles for the updated booth page
+*/
+
+/* Center alignment for section titles */
+.text-center {
+    text-align: center !important;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #e91e63;
+    font-weight: 600;
+}
+
+/* Improved spacing between booth sections */
+.booth-showcase {
+    padding: 60px 0;
+}
+
+/* Enhanced mobile styles */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .booth-showcase {
+        padding: 40px 0;
+    }
+    
+    .booth-content {
+        flex-direction: column;
+    }
+    
+    .booth-image, .booth-details {
+        width: 100%;
+    }
+}
